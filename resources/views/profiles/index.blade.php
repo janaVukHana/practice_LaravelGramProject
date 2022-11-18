@@ -10,18 +10,19 @@
         <div class="col-9 bg-info pt-5">
             {{-- <div><h1>freecodecamp</h1></div> --}}
             {{-- Before you display user name you can maybe try to manipulate database ... with  --}}
-            <div><h1>{{Auth::user()->username}}</h1></div>
+            {{-- <div><h1>{{Auth::user()->username}}</h1></div> --}}
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{$user->username}}</h1>
+                <a class="btn btn-primary" href="/post/create">Add New Post</a>
+            </div>
             <div class="d-flex">
                 <div class="pe-5"><strong>505</strong> posts</div>
                 <div class="pe-5"><strong>118</strong> followers</div>
                 <div class="pe-5"><strong>390</strong> following</div>
             </div>
-            <div class="fw-bold mt-3">freecodecamp.org</div>
-            <div>
-                We're a global community of millions of people learning to code together.
-                LearnToCodeRPG: https://www.freecodecamp.org/news/learn-to-code-rpg/
-            </div>
-            <div><a href="#" class="text-decoration-none text-primary fw-bold">www.freecodecamp.org</a></div>
+            <div class="fw-bold mt-3">{{$user->profile->title}}</div>
+            <div>{{$user->profile->description}}</div>
+            <div><a href="{{$user->profile->url}}" target="_blank" class="text-decoration-none text-primary fw-bold">{{$user->profile->url}}</a></div>
         </div>
     </div>
 

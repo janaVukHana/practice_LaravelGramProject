@@ -27,3 +27,4 @@ Route::get('/profiles/{user}', [ProfilesController::class, 'index'])->name('prof
 
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');

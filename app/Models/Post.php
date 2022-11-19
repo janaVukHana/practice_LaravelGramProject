@@ -13,6 +13,6 @@ class Post extends Model
     protected $fillable = ['caption', 'image'];
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

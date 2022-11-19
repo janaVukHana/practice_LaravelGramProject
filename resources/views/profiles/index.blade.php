@@ -16,7 +16,10 @@
                 <a class="btn btn-primary" href="/post/create">Add New Post</a>
             </div>
             <div class="d-flex">
-                <div class="pe-5"><strong>505</strong> posts</div>
+                {{-- first solution --}}
+                {{-- <div class="pe-5"><strong>{{count($posts)}}</strong> posts</div> --}}
+                {{-- second solution --}}
+                <div class="pe-5"><strong>{{$user->posts->count()}}</strong> posts</div>
                 <div class="pe-5"><strong>118</strong> followers</div>
                 <div class="pe-5"><strong>390</strong> following</div>
             </div>
@@ -27,15 +30,11 @@
     </div>
 
     <div class="row pt-5">
-        <div class="col-4">
-            <img class="w-100" src="{{asset('images/first_image.jpg')}}" alt="">
-        </div>
-        <div class="col-4">
-            <img class="w-100" src="{{asset('images/second_image.jpg')}}" alt="">
-        </div>
-        <div class="col-4">
-            <img class="w-100" src="{{asset('images/third_image.jpg')}}" alt="">
-        </div>
+        @foreach ($posts as $post)
+            <div class="col-4 mb-4">
+                <a href="/post/{{$post->id}}"><img src="{{asset($post->image)}}" alt="{{$post->caption}}" class="w-100"></a>
+            </div>
+        @endforeach
     </div>
 
 </div>

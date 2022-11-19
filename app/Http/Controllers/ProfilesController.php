@@ -9,9 +9,13 @@ class ProfilesController extends Controller
 {
     public function index($user) {
         $user = User::findOrFail($user);
+        // $posts = auth()->user()->posts->orderBy('id','desc');
+        $posts = auth()->user()->posts;
+        
 
         return view('profiles.index', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
 }

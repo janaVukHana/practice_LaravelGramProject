@@ -5,20 +5,23 @@
     
     <div class="row">
         <div class="col-3 bg-secondary p-5">
-                <img class="rounded-circle" src="{{asset('images/freeCodeCamp.jpg')}}" alt="logo">
+                <img class="w-100 rounded-circle" src="{{$user->profile->image ? asset($user->profile->image) : asset('images/freeCodeCamp.jpg')}}" alt="logo">
         </div>
         <div class="col-9 bg-info pt-5">
             {{-- <div><h1>freecodecamp</h1></div> --}}
             {{-- Before you display user name you can maybe try to manipulate database ... with  --}}
             {{-- <div><h1>{{Auth::user()->username}}</h1></div> --}}
             <div class="d-flex justify-content-between align-items-center">
-                <h1>{{$user->username}}</h1>
+                <div class="d-flex">
+                    <h1>{{$user->username}}</h1>
+                    <button class="btn btn-primary ms-3">Follow</button>
+                </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/post/create">Add New Post</a>
                 @endcan
             </div>
             @can('update', $user->profile)
-                <div><a class="text-decoration-none" href="/profiles/{{$user->id}}/edit">Update Profile</a></div>
+                <div><a class="text-decoration-none" href="/profiles/{{$user->id}}/edit">Edit Profile</a></div>
             @endcan
             <div class="d-flex">
                 {{-- first solution --}}
@@ -30,7 +33,8 @@
             </div>
             <div class="fw-bold mt-3">{{$user->profile->title}}</div>
             <div>{{$user->profile->description}}</div>
-            <div><a href="{{$user->profile->url}}" target="_blank" class="text-decoration-none text-primary fw-bold">{{$user->profile->url}}</a></div>
+            
+            <div><a href="{{$user->profile->url}}" class="text-decoration-none text-primary fw-bold">{{$user->profile->url ?? 'Update your profile and give me your url'}}</a></div>
         </div>
     </div>
 

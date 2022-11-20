@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('url')->nullable();
-            // $table->string('image')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
             // this is for better search and querys

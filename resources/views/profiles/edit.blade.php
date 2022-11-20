@@ -70,7 +70,7 @@
                         @enderror
                 </div>
 
-                {{-- <div class="row mb-3">
+                <div class="row mb-3">
                     <label for="image" class="col-md-4 col-form-label">Post image</label>
     
                         <input 
@@ -88,7 +88,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                </div> --}}
+                </div>
     
                 <div class="row">
                     <button type="submit" class="btn btn-primary">Edit</button>

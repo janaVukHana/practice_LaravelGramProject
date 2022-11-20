@@ -12,9 +12,9 @@
             {{-- Before you display user name you can maybe try to manipulate database ... with  --}}
             {{-- <div><h1>{{Auth::user()->username}}</h1></div> --}}
             <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex">
+                <div class="d-flex align-items-center">
                     <h1>{{$user->username}}</h1>
-                    <button class="btn btn-primary ms-3">Follow</button>
+                    <div><button class="btn btn-primary ms-3">Follow</button></div>
                 </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/post/create">Add New Post</a>

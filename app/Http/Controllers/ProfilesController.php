@@ -32,9 +32,11 @@ class ProfilesController extends Controller
 
         $data = request()->validate([
             'title' => 'required',
-            'description' => 'required|min:12'
+            'description' => 'required|min:12',
+            'url' => 'required|url'
         ]);
 
+        // one way: auth()->user()->profile->update($data);
         $user->profile->update($data);
 
         return redirect('/profiles/' . $user->id);

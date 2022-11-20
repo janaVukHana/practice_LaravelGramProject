@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
@@ -17,5 +18,21 @@ class ProfilesController extends Controller
             'user' => $user,
             'posts' => $posts
         ]);
+    }
+
+    // another way for pasing data to view is with compact fn
+    public function edit(User $user) {
+        return view('profiles.edit', compact('user'));
+    }
+
+    public function update(User $user) {
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required|min:12'
+        ]);
+
+        $user->profile->update($data);
+
+        return redirect('/profiles/' . $user->id);
     }
 }

@@ -11,10 +11,11 @@
             {{-- <div><h1>freecodecamp</h1></div> --}}
             {{-- Before you display user name you can maybe try to manipulate database ... with  --}}
             {{-- <div><h1>{{Auth::user()->username}}</h1></div> --}}
-            <div class="d-flex justify-content-between align-items-baseline">
+            <div class="d-flex justify-content-between align-items-center">
                 <h1>{{$user->username}}</h1>
                 <a class="btn btn-primary" href="/post/create">Add New Post</a>
             </div>
+            <div><a class="text-decoration-none" href="/profiles/{{$user->id}}/edit">Update Profile</a></div>
             <div class="d-flex">
                 {{-- first solution --}}
                 {{-- <div class="pe-5"><strong>{{count($posts)}}</strong> posts</div> --}}

@@ -13,9 +13,13 @@
             {{-- <div><h1>{{Auth::user()->username}}</h1></div> --}}
             <div class="d-flex justify-content-between align-items-center">
                 <h1>{{$user->username}}</h1>
-                <a class="btn btn-primary" href="/post/create">Add New Post</a>
+                @can('update', $user->profile)
+                    <a class="btn btn-primary" href="/post/create">Add New Post</a>
+                @endcan
             </div>
-            <div><a class="text-decoration-none" href="/profiles/{{$user->id}}/edit">Update Profile</a></div>
+            @can('update', $user->profile)
+                <div><a class="text-decoration-none" href="/profiles/{{$user->id}}/edit">Update Profile</a></div>
+            @endcan
             <div class="d-flex">
                 {{-- first solution --}}
                 {{-- <div class="pe-5"><strong>{{count($posts)}}</strong> posts</div> --}}

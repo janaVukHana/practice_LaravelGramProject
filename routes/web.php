@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\ProfilesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::get('/profiles/{user}/edit', [ProfilesController::class, 'edit'])->name('
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
 Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+
+Route::post('/follow/{user}', [FollowsController::class, 'store']);
+
+

@@ -14,7 +14,8 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
                     <h1>{{$user->username}}</h1>
-                    <div><button class="btn btn-primary ms-3">Follow</button></div>
+                    {{-- <div><button class="btn btn-primary ms-3">Follow</button></div> --}}
+                    <follow-button user-id="{{$user->id}}" follows="{{$follows}}"></follow-button>
                 </div>
                 @can('update', $user->profile)
                     <a class="btn btn-primary" href="/post/create">Add New Post</a>
@@ -27,9 +28,9 @@
                 {{-- first solution --}}
                 {{-- <div class="pe-5"><strong>{{count($posts)}}</strong> posts</div> --}}
                 {{-- second solution --}}
-                <div class="pe-5"><strong>{{$user->posts->count()}}</strong> posts</div>
-                <div class="pe-5"><strong>118</strong> followers</div>
-                <div class="pe-5"><strong>390</strong> following</div>
+                <div class="pe-5"><strong>{{$posts}}</strong> posts</div>
+                <div class="pe-5"><strong>{{$followers}}</strong> followers</div>
+                <div class="pe-5"><strong>{{$following}}</strong> following</div>
             </div>
             <div class="fw-bold mt-3">{{$user->profile->title}}</div>
             <div>{{$user->profile->description}}</div>
@@ -39,7 +40,7 @@
     </div>
 
     <div class="row pt-5">
-        @foreach ($posts as $post)
+        @foreach ($user->posts as $post)
             <div class="col-4 mb-4">
                 <a href="/post/{{$post->id}}"><img src="{{asset($post->image)}}" alt="{{$post->caption}}" class="w-100"></a>
             </div>
@@ -47,5 +48,5 @@
     </div>
 
 </div>
-<p>some text</p>
+
 @endsection

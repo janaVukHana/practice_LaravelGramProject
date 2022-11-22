@@ -12,13 +12,22 @@ class ProfilesController extends Controller
     public function index($user) {
         $user = User::findOrFail($user);
         // $posts = auth()->user()->posts->orderBy('id','desc');
-        $posts = auth()->user()->posts;
-        
 
-        return view('profiles.index', [
-            'user' => $user,
-            'posts' => $posts
-        ]);
+        $follows = auth()->user()->following->contains($user->id) ?? false;  
+
+        $posts = $user->posts->count();
+        $following = $user->following->count();  
+        $followers = $user->profile->followers->count(); 
+
+        // return view('profiles.index', [
+        //     'user' => $user,
+        //     'follows' => $follows,
+        //     'posts' => $posts,
+        //     'followers' => $followers,
+        //     'following' => $following
+        // ]);
+
+        return view('profiles.index', compact('user', 'follows', 'posts', 'followers', 'following'));
     }
 
     // another way for pasing data to view is with compact fn

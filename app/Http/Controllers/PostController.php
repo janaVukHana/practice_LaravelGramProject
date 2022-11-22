@@ -14,6 +14,16 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
+    public function index() {
+        // following() gives me error but everything is working
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        
+        // n+1 problem fix with ->with('user')
+        $posts = Post::whereIn('user_id',$users)->with('user')->latest()->paginate(2);
+
+        return view('post.index', compact('posts'));
+    }
+
     public function create() {
         return view('post.create');
     }

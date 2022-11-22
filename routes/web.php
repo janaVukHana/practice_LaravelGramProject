@@ -17,9 +17,9 @@ use App\Http\Controllers\ProfilesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -28,6 +28,7 @@ Route::patch('/profiles/{user}', [ProfilesController::class, 'update'])->name('p
 Route::get('/profiles/{user}', [ProfilesController::class, 'index'])->name('profiles.index');
 Route::get('/profiles/{user}/edit', [ProfilesController::class, 'edit'])->name('profiles.edit');
 
+Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
 Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
